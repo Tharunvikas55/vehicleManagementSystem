@@ -1,0 +1,29 @@
+{
+  "name": "vehiclemanagementsystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tharunvikas55/vehicleManagementSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tharunvikas55/vehicleManagementSystem/issues"
+  },
+  "homepage": "https://github.com/Tharunvikas55/vehicleManagementSystem#readme",
+  "dependencies": {
+    "connect-mongodb-session": "^5.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "express-handlebars": "^7.1.2",
+    "mkdirp": "^3.0.1",
+    "mongoose": "^8.2.1",
+    "nodemon": "^3.1.0"
+  }
+}

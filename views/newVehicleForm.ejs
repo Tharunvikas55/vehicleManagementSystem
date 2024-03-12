@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KEC Transport |<%=title%></title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <style>
+      body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-image: url("https://kongu.ac.in/facilities/images/bus.JPG");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+      }
+      .blue-text {
+        color: #00bcd4;
+      }
+      .form-control-label {
+        margin-bottom: 0;
+      }
+      input,
+      textarea,
+      button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300;
+      }
+      input:focus,
+      textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00bcd4;
+        outline-width: 0;
+        font-weight: 400;
+      }
+      .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer;
+      }
+      .btn-block:hover {
+        color: #fff !important;
+      }
+      button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0;
+      }
+    </style>
+    <!-- <script>
+      function validate(val) {
+        v1 = document.getElementById("fname");
+        v2 = document.getElementById("lname");
+        v3 = document.getElementById("email");
+        v4 = document.getElementById("mob");
+        v5 = document.getElementById("job");
+        v6 = document.getElementById("ans");
+
+        flag1 = true;
+        flag2 = true;
+        flag3 = true;
+        flag4 = true;
+        flag5 = true;
+        flag6 = true;
+
+        if (val >= 1 || val == 0) {
+          if (v1.value == "") {
+            v1.style.borderColor = "red";
+            flag1 = false;
+          } else {
+            v1.style.borderColor = "green";
+            flag1 = true;
+          }
+        }
+
+        if (val >= 2 || val == 0) {
+          if (v2.value == "") {
+            v2.style.borderColor = "red";
+            flag2 = false;
+          } else {
+            v2.style.borderColor = "green";
+            flag2 = true;
+          }
+        }
+        if (val >= 3 || val == 0) {
+          if (v3.value == "") {
+            v3.style.borderColor = "red";
+            flag3 = false;
+          } else {
+            v3.style.borderColor = "green";
+            flag3 = true;
+          }
+        }
+        if (val >= 4 || val == 0) {
+          if (v4.value == "") {
+            v4.style.borderColor = "red";
+            flag4 = false;
+          } else {
+            v4.style.borderColor = "green";
+            flag4 = true;
+          }
+        }
+        if (val >= 5 || val == 0) {
+          if (v5.value == "") {
+            v5.style.borderColor = "red";
+            flag5 = false;
+          } else {
+            v5.style.borderColor = "green";
+            flag5 = true;
+          }
+        }
+        if (val >= 6 || val == 0) {
+          if (v6.value == "") {
+            v6.style.borderColor = "red";
+            flag6 = false;
+          } else {
+            v6.style.borderColor = "green";
+            flag6 = true;
+          }
+        }
+
+        flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+
+        return flag;
+      }
+    </script> -->
+  </head>
+  <body>
+    <div class="form">
+      <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <!-- <h3>Vehicle</h3> -->
+            <!-- <p class="blue-text">
+              Just answer a few questions<br />
+              so that we can personalize the right experience for you.
+            </p> -->
+            <div class="card">
+              <h5 class="text-center mb-4">Add New Vehicle</h5>
+              <form
+                class="form-card"
+                onsubmit="event.preventDefault()"
+                action="/admin/addNewBusPost"
+                method="post"
+              >
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Registration Number<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      id="fname"
+                      name="fname"
+                      placeholder="Eg. TN 56 Q 7075"
+                      onblur="validate(1)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Bus Number <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="text"
+                      id="lname"
+                      name="lname"
+                      placeholder="eg. 1"
+                      onblur="validate(2)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Model<span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="text"
+                      id="lname"
+                      name="lname"
+                      onblur="validate(2)"
+                    />
+                    <!-- <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select> -->
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Engine number<span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="text"
+                      id="mob"
+                      name="mob"
+                      placeholder=""
+                      onblur="validate(4)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Vehicle Class<span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder=""
+                      onblur="validate(3)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Registration Date<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      id="mob"
+                      name="mob"
+                      placeholder=""
+                      onblur="validate(4)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Fitness Valid up to<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      id="job"
+                      name="job"
+                      placeholder=""
+                      onblur="validate(5)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Tax Valid up to<span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="text"
+                      id="mob"
+                      name="mob"
+                      placeholder=""
+                      onblur="validate(4)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Last service date</label
+                    >
+                    <input
+                      type="date"
+                      id="job"
+                      name="job"
+                      placeholder=""
+                      onblur="validate(5)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Last service kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="job"
+                      name="job"
+                      placeholder=""
+                      onblur="validate(5)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Next service kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="mob"
+                      name="mob"
+                      placeholder=""
+                      onblur="validate(4)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-end">
+                  <div class="form-group col-sm-6">
+                    <button type="submit" class="btn-block btn-primary">
+                      CANCEL
+                    </button>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <button type="submit" class="btn-block btn-primary">
+                      ADD
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
