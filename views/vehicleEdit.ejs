@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/title.ejs')%>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <style>
+      body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-image: url("https://kongu.ac.in/facilities/images/bus.JPG");
+
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+      }
+      .blue-text {
+        color: #00bcd4;
+      }
+      .form-control-label {
+        margin-bottom: 0;
+      }
+      input,
+      textarea,
+      button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300;
+      }
+      input:focus,
+      textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00bcd4;
+        outline-width: 0;
+        font-weight: 400;
+      }
+      .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer;
+      }
+      .btn-block:hover {
+        color: #fff !important;
+      }
+      button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form">
+      <%- include('./partials/sidebar.ejs')%>
+      <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+              <h5 class="text-center mb-4">
+                Vehicle <%=vehicles.registrationNumber%>
+              </h5>
+              <form
+                class="form-card"
+                action="/admin/<%=vehicles._id%>/vehicleEditPost"
+                method="post"
+              >
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Bus Number <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="number"
+                      id="busNumber"
+                      name="busNumber"
+                      placeholder="eg. 1"
+                      value="<%=vehicles.busNumber%>"
+                    />
+                  </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3">
+                      Fitness Valid up to
+                      <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="date"
+                      id="fitnessValidupto"
+                      name="fitnessValidupto"
+                      placeholder=""
+                      onblur="validate(4)"
+                      value="<%=vehicles.fitnessValidupto%>"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Tax Valid up to
+                    </label>
+                    <input
+                      type="date"
+                      id="taxValidupto"
+                      name="taxValidupto"
+                      placeholder=""
+                      onblur="validate(5)"
+                      value="<%=vehicles.taxValidupto%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Last service date
+                      <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="date"
+                      id="lastServiceDate"
+                      name="lastServiceDate"
+                      placeholder=""
+                      onblur="validate(4)"
+                      value="<%=vehicles.lastServiceDate%>"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Last service kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="lastServiceKilometer"
+                      name="lastServiceKilometer"
+                      placeholder=""
+                      onblur="validate(5)"
+                      value="<%=vehicles.lastServiceKilometer%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Current Running kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="currentKm"
+                      name="currentKm"
+                      placeholder=""
+                      onblur="validate(4)"
+                      value="<%=vehicles.currentKm%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Next service kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="nextServiceKilometer"
+                      name="nextServiceKilometer"
+                      placeholder=""
+                      onblur="validate(4)"
+                      value="<%=vehicles.nextServiceKilometer%>"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-end">
+                  <div class="form-group col-sm-6">
+                    <button type="reset" class="btn-block btn-primary">
+                      CANCEL
+                    </button>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <button type="submit" class="btn-block btn-primary">
+                      SAVE
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>

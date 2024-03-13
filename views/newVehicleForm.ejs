@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KEC Transport |<%=title%></title>
+    <%- include('./partials/title.ejs')%>
 
     <link
       rel="stylesheet"
@@ -159,21 +159,16 @@
     </script> -->
   </head>
   <body>
+    <%- include('./partials/sidebar.ejs')%>
     <div class="form">
       <div class="container-fluid px-1 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
           <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <!-- <h3>Vehicle</h3> -->
-            <!-- <p class="blue-text">
-              Just answer a few questions<br />
-              so that we can personalize the right experience for you.
-            </p> -->
             <div class="card">
               <h5 class="text-center mb-4">Add New Vehicle</h5>
               <form
                 class="form-card"
-                onsubmit="event.preventDefault()"
-                action="/admin/addNewBusPost"
+                action="/admin/addNewVehiclePost"
                 method="post"
               >
                 <div class="row justify-content-between text-left">
@@ -185,8 +180,8 @@
                     >
                     <input
                       type="text"
-                      id="fname"
-                      name="fname"
+                      id="registrationNumber"
+                      name="registrationNumber"
                       placeholder="Eg. TN 56 Q 7075"
                       onblur="validate(1)"
                     />
@@ -196,9 +191,9 @@
                       >Bus Number <span class="text-danger"> *</span></label
                     >
                     <input
-                      type="text"
-                      id="lname"
-                      name="lname"
+                      type="number"
+                      id="busNumber"
+                      name="busNumber"
                       placeholder="eg. 1"
                       onblur="validate(2)"
                     />
@@ -207,14 +202,15 @@
                 <div class="row justify-content-between text-left">
                   <div class="form-group col-sm-6 flex-column d-flex">
                     <label class="form-control-label px-3"
-                      >Model<span class="text-danger"> *</span></label
+                      >Brand<span class="text-danger"> *</span></label
                     >
-                    <input
-                      type="text"
-                      id="lname"
-                      name="lname"
-                      onblur="validate(2)"
-                    />
+                    <select class="form-control form-group" name="brand">
+                      <option value="Ashok Leyland">Ashok Leyland</option>
+                      <option value="Eicher">Eicher</option>
+                      <option value="Mahindra">Mahindra</option>
+                      <option value="BharatBenz">BharatBenz</option>
+                      <option value="Tata Starbus">Tata Starbus</option>
+                    </select>
                     <!-- <select
                       class="form-select"
                       aria-label="Default select example"
@@ -226,85 +222,94 @@
                     </select> -->
                   </div>
                   <div class="form-group col-sm-6 flex-column d-flex">
-                    <label class="form-control-label px-3"
-                      >Engine number<span class="text-danger"> *</span></label
+                    <label class="form-control-label px-3">
+                      Model<span class="text-danger"> *</span></label
                     >
-                    <input
-                      type="text"
-                      id="mob"
-                      name="mob"
-                      placeholder=""
-                      onblur="validate(4)"
-                    />
+                    <select class="form-control form-group" name="model">
+                      <option value="BS6">BS6</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
                   </div>
                 </div>
                 <div class="row justify-content-between text-left">
                   <div class="form-group col-sm-6 flex-column d-flex">
                     <label class="form-control-label px-3"
-                      >Vehicle Class<span class="text-danger"> *</span></label
+                      >Engine number<span class="text-danger"> *</span></label
                     >
                     <input
                       type="text"
-                      id="email"
-                      name="email"
+                      id="engineNumber"
+                      name="engineNumber"
                       placeholder=""
                       onblur="validate(3)"
                     />
                   </div>
                   <div class="form-group col-sm-6 flex-column d-flex">
                     <label class="form-control-label px-3"
-                      >Registration Date<span class="text-danger">
-                        *</span
-                      ></label
+                      >Fuel Type<span class="text-danger"> *</span></label
                     >
-                    <input
-                      type="text"
-                      id="mob"
-                      name="mob"
-                      placeholder=""
-                      onblur="validate(4)"
-                    />
+                    <select class="form-control form-group" name="fuelType">
+                      <option value="Diesel">Diesel</option>
+                      <option value="CNG">CNG</option>
+                    </select>
                   </div>
                 </div>
                 <div class="row justify-content-between text-left">
                   <div class="form-group col-sm-6 flex-column d-flex">
-                    <label class="form-control-label px-3"
-                      >Fitness Valid up to<span class="text-danger">
+                    <label class="form-control-label px-3">
+                      Registration Date<span class="text-danger">
                         *</span
                       ></label
-                    >
-                    <input
-                      type="text"
-                      id="job"
-                      name="job"
-                      placeholder=""
-                      onblur="validate(5)"
-                    />
-                  </div>
-                  <div class="form-group col-sm-6 flex-column d-flex">
-                    <label class="form-control-label px-3"
-                      >Tax Valid up to<span class="text-danger"> *</span></label
-                    >
-                    <input
-                      type="text"
-                      id="mob"
-                      name="mob"
-                      placeholder=""
-                      onblur="validate(4)"
-                    />
-                  </div>
-                </div>
-                <div class="row justify-content-between text-left">
-                  <div class="form-group col-sm-6 flex-column d-flex">
-                    <label class="form-control-label px-3"
-                      >Last service date</label
                     >
                     <input
                       type="date"
-                      id="job"
-                      name="job"
+                      id="registrationDate"
+                      name="registrationDate"
                       placeholder=""
                       onblur="validate(5)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3">
+                      Fitness Valid up to
+                      <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="date"
+                      id="fitnessValidupto"
+                      name="fitnessValidupto"
+                      placeholder=""
+                      onblur="validate(4)"
+                    />
+                  </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Tax Valid up to
+                    </label>
+                    <input
+                      type="date"
+                      id="taxValidupto"
+                      name="taxValidupto"
+                      placeholder=""
+                      onblur="validate(5)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Last service date
+                      <span class="text-danger"> *</span></label
+                    >
+                    <input
+                      type="date"
+                      id="lastServiceDate"
+                      name="lastServiceDate"
+                      placeholder=""
+                      onblur="validate(4)"
                     />
                   </div>
                 </div>
@@ -317,10 +322,24 @@
                     >
                     <input
                       type="number"
-                      id="job"
-                      name="job"
+                      id="lastServiceKilometer"
+                      name="lastServiceKilometer"
                       placeholder=""
                       onblur="validate(5)"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3"
+                      >Current Running kilometer<span class="text-danger">
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="number"
+                      id="currentKm"
+                      name="currentKm"
+                      placeholder=""
+                      onblur="validate(4)"
                     />
                   </div>
                   <div class="form-group col-sm-6 flex-column d-flex">
@@ -331,8 +350,8 @@
                     >
                     <input
                       type="number"
-                      id="mob"
-                      name="mob"
+                      id="nextServiceKilometer"
+                      name="nextServiceKilometer"
                       placeholder=""
                       onblur="validate(4)"
                     />
@@ -340,7 +359,7 @@
                 </div>
                 <div class="row justify-content-end">
                   <div class="form-group col-sm-6">
-                    <button type="submit" class="btn-block btn-primary">
+                    <button type="reset" class="btn-block btn-primary">
                       CANCEL
                     </button>
                   </div>
@@ -356,5 +375,6 @@
         </div>
       </div>
     </div>
+    <%- include("./partials/footer.ejs") %>
   </body>
 </html>

@@ -10,7 +10,11 @@ const vehicleSchema=new schema({
         type:String,
         required:true,
     },
-    Model:{
+    model:{
+        type:String,
+        required:true,
+    },
+    brand:{
         type:String,
         required:true,
     },
@@ -18,11 +22,11 @@ const vehicleSchema=new schema({
         type:String,
         required:true,
     },
-    vehicleClass:{
+    fuelType:{
         type:String,
         required:true,
     },
-    registrationNumber:{
+    registrationDate:{
         type:String,
         required:true,
     },
@@ -35,10 +39,14 @@ const vehicleSchema=new schema({
         required:true,
     },
     lastServiceDate:{
-        type:Date,
+        type:String,
         required:true,
     },
     lastServiceKilometer:{
+        type:Number,
+        required:true,
+    },
+    currentKm:{
         type:Number,
         required:true,
     },
@@ -47,7 +55,7 @@ const vehicleSchema=new schema({
         required:true,
     }
 
-})
+},{timestamps:true})
 
 const Vehicle=mongoose.model("vehicle",vehicleSchema);
 
