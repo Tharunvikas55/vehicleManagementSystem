@@ -26,6 +26,10 @@ exports.getVehicleEdit=(req,res)=>{
     })
 }
 
+exports.getRemainder=(req,res)=>{
+    res.render("remainder",{title:"Remainder Details"})
+}
+
 exports.postNewVehicleForm=(req,res)=>{
     const New=new Vehicle(req.body);
     New.save()

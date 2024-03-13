@@ -13,6 +13,8 @@ router.get("/:id/vehicleEdit",controller.getVehicleEdit)
 
 router.get("/:id/vehicleDelete",controller.vehicleDelete);
 
+router.get("/remainder",controller.getRemainder);
+
 router.post("/addNewVehiclePost",controller.postNewVehicleForm);
 
 router.post("/:id/vehicleEditPost",controller.postVehicleEdit)
