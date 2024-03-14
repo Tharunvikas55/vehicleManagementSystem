@@ -7,6 +7,8 @@ const path = require('path');
 
 const Routes=require("./routes/Routes")
 
+
+
 //DB configuration
 const db=require("./config/keys").MongoURI;
 
