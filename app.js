@@ -65,10 +65,10 @@ app.use("/admin/:id/sendRemainder", async (req, res) => {
     .create({
                 from: '+12408378385',
         to: '+919384148359',
-        body:"Service date"
+        body:"Service date is approaching"
     })
     .then(message => console.log(message.sid))
-    
+    res.redirect("/admin/index");
 });
 
 
