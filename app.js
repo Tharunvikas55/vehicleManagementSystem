@@ -9,9 +9,9 @@ const Routes=require("./routes/Routes")
 
 const Remainder = require('./model/remainder');
 
-// const accountSid = 'ACe1154afd5197349b3eae1ad34aaca4a5';
-// const authToken = 'dee16b1312b5a1badacbc9a3adf0ce52';
-// const client = require("twilio")(accountSid, authToken);
+const accountSid = 'ACe1154afd5197349b3eae1ad34aaca4a5';
+const authToken = 'dee16b1312b5a1badacbc9a3adf0ce52';
+const client = require("twilio")(accountSid, authToken);
 
 //DB configuration
 const db=require("./config/keys").MongoURI;
@@ -34,13 +34,13 @@ app.use((req, res, next) => {
 
 
 
-const sendMessage = async (body,id) => {
+const sendMessage = async () => {
   const accountSid = process.env.ACCOUNT_SID;
   const authToken = process.env.AUTH_TOKEN_TWILIO;
   const client = require("twilio")(accountSid, authToken);
   try {
     const message = await client.messages.create({
-      body:body,
+      body:"Next service",
       from: "+12408378385",
       to: "+919384148359",
     });
@@ -52,15 +52,23 @@ const sendMessage = async (body,id) => {
 };
 
 app.use("/admin/:id/sendRemainder", async (req, res) => {
-  const _id = req.params.id;
-  const messageBody = "Your reminder message goes here.";
-  
-    await sendMessage(messageBody,_id);
-    res.redirect("/admin/index");
-  // .catch (err) {
+  // const _id = req.params.id;
+  // const messageBody = "Your reminder message goes here.";
+  // try {
+  //   await sendMessage()
+  //   res.redirect("/admin/index");
+  // } catch (err) {
   //   console.log(err);
   //   res.status(500).send("Error sending SMS ");
   // }
+  client.messages
+    .create({
+                from: '+12408378385',
+        to: '+919384148359',
+        body:"Service date"
+    })
+    .then(message => console.log(message.sid))
+    
 });
 
 
